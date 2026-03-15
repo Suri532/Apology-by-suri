@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Apology Adventure 🐱</title>
+
+<style>
+
+body{
+font-family:"Comic Sans MS",cursive;
+text-align:center;
+background:linear-gradient(135deg,#ffd6e8,#e8d7ff);
+}
+
+h1{
+color:#ff4da6;
+}
+
+button{
+padding:12px 20px;
+font-size:16px;
+border:none;
+border-radius:12px;
+background:#ff9ed2;
+cursor:pointer;
+margin:10px;
+}
+
+#cat{
+font-size:80px;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{top:-50px;}
+100%{top:100vh;}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Apology Adventure 🌸</h1>
+
+<div id="cat">🐱</div>
+
+<p id="text">
+Hi Aduu! I'm Mochi the Cat.  
+I heard someone wanted to say sorry to you...
+</p>
+
+<button onclick="startGame()">Start Adventure 🎮</button>
+
+<div id="gameArea"></div>
+
+<script>
+
+function startGame(){
+document.getElementById("text").innerHTML=
+"Mochi says: HERNAME, let's see if someone learned their lesson 😼";
+
+document.getElementById("gameArea").innerHTML=`
+
+<h3>If you hurt someone important, what should you do?</h3>
+
+<button onclick="wrong()">Ignore it</button>
+<button onclick="correct()">Say sorry and improve</button>
+<button onclick="wrong()">Blame them</button>
+
+`;
+}
+
+function correct(){
+document.getElementById("text").innerHTML=
+"Mochi says: Good choice! Now collect the apology hearts ❤️";
+
+startHeartGame();
+}
+
+function wrong(){
+alert("Mochi says: Hmm… that's not the right answer 🐱");
+}
+
+function startHeartGame(){
+
+document.getElementById("gameArea").innerHTML=
+"<p>Click the hearts to collect them!</p>";
+
+for(let i=0;i<10;i++){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.onclick=function(){
+this.remove();
+checkWin();
+};
+
+document.body.appendChild(heart);
+
+}
+
+}
+
+function checkWin(){
+
+if(document.querySelectorAll(".heart").length===0){
+
+document.getElementById("gameArea").innerHTML=`
+
+<h2>Final Message 💌</h2>
+
+<p>
+Aduu,  
+I know I made mistakes and I’m really sorry.  
+You are important to me and I want to do better.  
+This little game was my way of showing that I care.
+</p>
+
+<h3>Will you forgive me? 🌸</h3>
+
+<button onclick="forgive()">Maybe 😊</button>
+
+`;
+
+}
+
+}
+
+function forgive(){
+alert("Mochi says: Yay! I hope HERNAME smiles now 🐱💖");
+}
+
+</script>
+
+</body>
+</html>
